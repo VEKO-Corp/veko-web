@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEKO - Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img id="logo-image" src="img/logo-light.png" alt="VEKO">
+            </a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <div class="switch-handle"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="blog">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Blog Tecnológico</h2>
+                <p>Artículos, noticias y análisis sobre las últimas tendencias en tecnología</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card fade-in delay-1">
+                    <div class="blog-image" style="height: 220px; background-color: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); margin-bottom: 20px;">
+                        Inteligencia Artificial
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">15 Julio 2025</span>
+                        <h3>Transformando negocios con IA generativa</h3>
+                        <p>Exploramos cómo las nuevas herramientas de IA están revolucionando la creación de contenido y automatizando procesos empresariales.</p>
+                        <a href="#" class="btn">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card fade-in delay-2">
+                    <div class="blog-image" style="height: 220px; background-color: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); margin-bottom: 20px;">
+                        Ciberseguridad
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">2 Julio 2025</span>
+                        <h3>Protegiendo datos en la era cuántica</h3>
+                        <p>Análisis de las nuevas amenazas de seguridad y estrategias para proteger la información sensible ante futuros ataques cuánticos.</p>
+                        <a href="#" class="btn">Leer más</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card fade-in delay-3">
+                    <div class="blog-image" style="height: 220px; background-color: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); margin-bottom: 20px;">
+                        Cloud Computing
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">20 Junio 2025</span>
+                        <h3>Optimizando costos en infraestructura cloud</h3>
+                        <p>Guía práctica para empresas que buscan reducir sus gastos en servicios cloud sin sacrificar rendimiento ni seguridad.</p>
+                        <a href="#" class="btn">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column fade-in">
+                    <div class="logo-footer">
+                        <img id="footer-logo" src="img/logo-light.png" alt="VEKO">
+                    </div>
+                    <p>Soluciones tecnológicas innovadoras para transformar su negocio y mejorar la experiencia de sus clientes.</p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" class="social-icon" target="_blank" rel="noopener">
+                        <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener">
+                        <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://discord.gg/Fd7Y59jMyu" class="social-icon" target="_blank" rel="noopener">
+                        <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column fade-in delay-1">
+                    <h3>Enlaces</h3>
+                    <a href="index.html">Inicio</a>
+                    <a href="nosotros.html">Nosotros</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+                
+                <div class="footer-column fade-in delay-2">
+                    <h3>Legal</h3>
+                    <a href="terminos-y-condiciones-de-uso.html">Términos y Condiciones</a>
+                    <a href="politica-de-privacidad.html">Política de Privacidad</a>
+                    <a href="aviso-legal.html">Aviso Legal</a>
+                </div>
+                
+                <div class="footer-column fade-in delay-3">
+                    <h3>Contacto</h3>
+                    <p>Córdoba, Argentina</p>
+                    <p>veko.corp@tuta.io</p>
+                    <a href="soporte.html">Soporte Técnico</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom fade-in delay-4">
+                <p>&copy; 2025 VEKO Corp. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

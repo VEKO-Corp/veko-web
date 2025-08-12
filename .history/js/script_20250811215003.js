@@ -1,0 +1,119 @@
+// URLs de los logos
+const logoLight = 'https://i.imgur.com/SGKpW2X.png';
+const logoDark = 'https://i.imgur.com/OcqHPX8.png';
+
+// Función para actualizar logos según el tema
+function updateLogos() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const headerLogo = document.getElementById('logo-image');
+    const footerLogo = document.getElementById('footer-logo');
+    
+    if (headerLogo) {
+        headerLogo.src = isDarkMode ? logoDark : logoLight;
+    }
+    
+    if (footerLogo) {
+        footerLogo.src = isDarkMode ? logoDark : logoLight;
+    }
+}
+
+// Gestión del modo claro/oscuro
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+// Comprobar preferencia almacenada
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+updateLogos(); // Actualizar logos según el tema inicial
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+    
+    updateLogos(); // Actualizar logos al cambiar el tema
+});
+
+// Menú móvil
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const nav = document.querySelector('nav');
+
+mobileMenuBtn.addEventListener('click', () => {
+    nav.classList.toggle('active');
+});
+
+// Efecto sticky header al hacer scroll
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Animaciones al hacer scroll
+const fadeElements = document.querySelectorAll('.fade-in');
+
+const appearOnScroll = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            appearOnScroll.unobserve(entry.target);
+        }
+    });
+}, { 
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+fadeElements.forEach(element => {
+    appearOnScroll.observe(element);
+});
+
+// Cambiar clase activa en navegación
+const navLinks = document.querySelectorAll('nav a');
+
+function setActiveLink() {
+    const currentPath = window.location.pathname.split('/').pop();
+    
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        // Verificar si el enlace coincide con la página actual
+        if (linkPath === currentPath || 
+            (linkPath === 'index.html' && currentPath === '')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Inicializar y escuchar cambios en la ruta
+setActiveLink();
+window.addEventListener('popstate', setActiveLink);
+
+// Cerrar menú móvil al hacer clic en un enlace
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+            nav.classList.remove('active');
+        }
+        setActiveLink();
+    });
+});
+
+// Animación de carga inicial
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+        setActiveLink(); // Asegurar que el enlace activo esté configurado
+    }, 200);
+});

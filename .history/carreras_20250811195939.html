@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carreras - VEKO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header con navegación (mismo que index.html) -->
+    
+    <section class="subpage-hero">
+        <div class="container">
+            <h1>Trabaja con Nosotros</h1>
+        </div>
+    </section>
+
+    <section id="carreras">
+        <div class="container">
+            <div class="section-title">
+                <h2>Únete a Nuestro Equipo</h2>
+                <p>Buscamos talento apasionado por la tecnología y la innovación</p>
+            </div>
+            
+            <div class="jobs-grid">
+                <div class="job-card">
+                    <h3>Desarrollador Full Stack</h3>
+                    <div class="job-info">
+                        <span>Madrid</span>
+                        <span>Tiempo completo</span>
+                    </div>
+                    <p>Buscamos desarrollador con experiencia en JavaScript, Node.js y React para unirse a nuestro equipo de producto.</p>
+                    <a href="#" class="btn">Ver detalles</a>
+                </div>
+                
+                <!-- Repetir para cada vacante -->
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="formulario-cv" class="bg-gray">
+        <div class="container">
+            <div class="section-title">
+                <h2>Envía tu CV</h2>
+                <p>¿No encuentras la vacante perfecta? Envíanos tu CV y te contactaremos</p>
+            </div>
+            
+            <form class="cv-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="cv">Adjuntar CV (PDF)</label>
+                    <input type="file" id="cv" accept=".pdf">
+                </div>
+                <button type="submit" class="btn">Enviar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (mismo que index.html) -->
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

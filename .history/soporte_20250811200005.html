@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte - VEKO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header con navegación (mismo que index.html) -->
+    
+    <section class="subpage-hero">
+        <div class="container">
+            <h1>Soporte Técnico</h1>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Preguntas Frecuentes</h2>
+                <p>Encuentra respuestas a las preguntas más comunes</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>¿Cómo puedo reportar un problema técnico?</h3>
+                    <p>Puedes reportar problemas técnicos a través de nuestro formulario de soporte o contactando directamente a nuestro equipo de soporte técnico en el +34 91 123 45 67.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>¿Cuál es el tiempo de respuesta para problemas críticos?</h3>
+                    <p>Para problemas críticos que afecten la operación de su negocio, garantizamos una respuesta inicial en menos de 1 hora durante nuestro horario de atención.</p>
+                </div>
+                
+                <!-- Repetir para cada FAQ -->
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="formulario-soporte" class="bg-gray">
+        <div class="container">
+            <div class="section-title">
+                <h2>Solicitud de Soporte</h2>
+                <p>Completa el formulario y nuestro equipo te contactará</p>
+            </div>
+            
+            <form class="support-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="servicio">Servicio contratado</label>
+                    <select id="servicio" required>
+                        <option value="">Seleccionar servicio</option>
+                        <option value="desarrollo">Desarrollo de Software</option>
+                        <option value="cloud">Cloud Computing</option>
+                        <option value="ia">Inteligencia Artificial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="problema">Descripción del problema</label>
+                    <textarea id="problema" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer (mismo que index.html) -->
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

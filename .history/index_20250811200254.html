@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEKO - Soluciones Tecnológicas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            /* Variables para modo claro */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F8F8;
+            --bg-tertiary: #F0F0F0;
+            --text-primary: #000000;
+            --text-secondary: #222222;
+            --text-tertiary: #444444;
+            --accent: #888888;
+            --accent-light: #CCCCCC;
+            --border: #DDDDDD;
+            --button-bg: #222222;
+            --button-text: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --overlay: rgba(0, 0, 0, 0.5);
+        }
+
+        .dark-mode {
+            /* Variables para modo oscuro */
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --text-tertiary: #AAAAAA;
+            --accent: #777777;
+            --accent-light: #333333;
+            --border: #333333;
+            --button-bg: #EEEEEE;
+            --button-text: #000000;
+            --shadow: rgba(255, 255, 255, 0.05);
+            --overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header y navegación */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        header.scrolled {
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            font-weight: 300;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        nav ul li a:hover:after,
+        nav ul li a.active:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--text-primary);
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background-color: var(--bg-tertiary);
+            border-radius: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            margin-left: 20px;
+        }
+
+        .switch-handle {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--button-bg);
+            transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .dark-mode .switch-handle {
+            transform: translateX(24px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Banner principal */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: 
+                linear-gradient(var(--overlay), var(--overlay)), 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="grey"/><path d="M0 0L100 100M100 0L0 100" stroke="%23ddd" stroke-width="1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            color: white;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 1s forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 650px;
+            font-weight: 300;
+        }
+
+        /* Botones con animación de relleno */
+        .btn {
+            display: inline-block;
+            position: relative;
+            background-color: transparent;
+            color: var(--button-text);
+            padding: 14px 36px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--button-text);
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--button-text);
+            transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            color: var(--button-bg);
+        }
+
+        /* Secciones comunes */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .section-title p {
+            font-size: 1.15rem;
+            color: var(--text-tertiary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Sección Nosotros */
+        .about-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 460px;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .about-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.05), rgba(0,0,0,0.1));
+        }
+
+        /* Sección Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background-color: var(--bg-tertiary);
+            border-radius: 4px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 2.2rem;
+            font-weight: 300;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Sección Equipo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: transform 0.4s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            height: 280px;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .member-photo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+        }
+
+        .member-info {
+            padding: 25px 20px;
+        }
+
+        .member-info h4 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .member-info p {
+            color: var(--accent);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 90px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 0;
+            background-color: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-size: 1.6rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .social-icon:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-light);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+
+        .social-icon:hover:before {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 35px;
+            border-top: 1px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* Animaciones */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.6rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+                height: 380px;
+            }
+            
+            section {
+                padding: 90px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-primary);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+                height: 0;
+                overflow: hidden;
+                transition: height 0.4s ease;
+            }
+            
+            nav.active {
+                height: auto;
+                padding: 20px 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 12px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.15rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header>
+        <div class="container header-container">
+            <a href="https://i.imgur.com/SGKpW2X.png" class="logo" target="_blank" rel="noopener"></a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="proyectos.html">Proyectos</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="carreras.html">Carreras</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <div class="switch-handle"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tecnología Innovadora para Negocios Transformadores</h1>
+                <p>Soluciones tecnológicas avanzadas diseñadas para impulsar la eficiencia, seguridad y crecimiento de su organización</p>
+                <a href="contacto.html" class="btn">Contáctenos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Sobre Nosotros</h2>
+                <p>Impulsando la innovación tecnológica desde 2008 con soluciones de vanguardia</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text fade-in delay-1">
+                    <h3>Nuestra Misión</h3>
+                    <p>En VEKO, nos dedicamos a transformar organizaciones mediante soluciones tecnológicas estratégicas que optimizan operaciones, mejoran la experiencia del cliente y generan ventajas competitivas sostenibles.</p>
+                    <p>Fundada en Madrid, nuestra empresa ha crecido hasta convertirse en un referente en el sector tecnológico, trabajando con clientes en más de 20 países y desarrollando soluciones que impactan positivamente en millones de usuarios.</p>
+                    <a href="nosotros.html" class="btn">Conocer más</a>
+                </div>
+                <div class="about-image fade-in delay-2">
+                    Equipo VEKO
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section id="servicios" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Nuestros Servicios</h2>
+                <p>Soluciones tecnológicas especializadas para cada necesidad empresarial</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">D</div>
+                    <h3>Desarrollo de Software</h3>
+                    <p>Soluciones personalizadas, aplicaciones empresariales y sistemas a medida diseñados para optimizar sus procesos operativos.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">C</div>
+                    <h3>Cloud Computing</h3>
+                    <p>Migración, implementación y gestión de infraestructuras en la nube para máxima escalabilidad y eficiencia operativa.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">I</div>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Implementación de soluciones de IA y machine learning para análisis predictivo y automatización inteligente.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">S</div>
+                    <h3>Ciberseguridad</h3>
+                    <p>Protección integral de activos digitales, auditorías de seguridad y planes de continuidad de negocio.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">U</div>
+                    <h3>Experiencia de Usuario</h3>
+                    <p>Diseño de interfaces centradas en el usuario que mejoran la interacción y satisfacción del cliente.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">A</div>
+                    <h3>Análisis de Datos</h3>
+                    <p>Transformación de datos en información estratégica para la toma de decisiones basada en evidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Equipo -->
+    <section id="equipo">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Equipo Ejecutivo</h2>
+                <p>Liderazgo con visión estratégica y experiencia tecnológica</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member fade-in delay-1">
+                    <div class="member-photo">Directora General</div>
+                    <div class="member-info">
+                        <h4>María Rodríguez</h4>
+                        <p>CEO & Fundadora</p>
+                    </div>
+                </div>
+                
+                <div class="team-member fade-in delay-2">
+                    <div class="member-photo">Director Tecnológico</div>
+                    <div class="member-info">
+                        <h4>Carlos Méndez</h4>
+                        <p>CTO</p>
+                    </div>
+                </div>
+                
+                <div class="team-member fade-in delay-3">
+                    <div class="member-photo">Directora Innovación</div>
+                    <div class="member-info">
+                        <h4>Laura Fernández</h4>
+                        <p>Directora de Innovación</p>
+                    </div>
+                </div>
+                
+                <div class="team-member fade-in delay-4">
+                    <div class="member-photo">Director Operaciones</div>
+                    <div class="member-info">
+                        <h4>Javier López</h4>
+                        <p>Director de Operaciones</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column fade-in">
+                <h3>VEKO</h3>
+                <p>Soluciones tecnológicas innovadoras para transformar su negocio y mejorar la experiencia de sus clientes.</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com" class="social-icon" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener">
+                    <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.com" class="social-icon" target="_blank" rel="noopener">
+                    <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+                </div>
+
+                <div class="footer-column fade-in delay-1">
+                    <h3>Enlaces</h3>
+                    <a href="index.html">Inicio</a>
+                    <a href="nosotros.html">Nosotros</a>
+                    <a href="servicios.html">Servicios</a>
+                    <a href="proyectos.html">Proyectos</a>
+                    <a href="carreras.html">Carreras</a>
+                </div>
+                
+                <div class="footer-column fade-in delay-2">
+                    <h3>Legal</h3>
+                    <a href="politica-de-privacidad.html">Políticade Privacidad</a>
+                    <a href="terminos-y-condiciones-de-uso.html">Terminos y Condiciónes</a>
+                    <a href="aviso-legal.html">Aviso Legal</a>
+                </div>
+                
+                <div class="footer-column fade-in delay-3">
+                    <h3>Contacto</h3>
+                    <p>Córdoba, Argentina</p>
+                    <p>veko.corp@tuta.io</p>
+                    <a href="soporte.html">Soporte Técnico</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom fade-in delay-4">
+                <p>&copy; 2025 VEKO Corp. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestión del modo claro/oscuro
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Comprobar preferencia almacenada
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Efecto sticky header al hacer scroll
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animaciones al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+        
+        // Cambiar clase activa en navegación
+        const navLinks = document.querySelectorAll('nav a');
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+            
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Cerrar menú móvil si está abierto
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+        
+        // Animación de carga inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 200);
+        });
+    </script>
+    <script href="js/script.js"></script>
+</body>
+</html>
